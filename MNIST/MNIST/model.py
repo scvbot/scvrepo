@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-# 모델 이름: model_2_v2
+# 모델 이름: model_1_v13
 # 데이터셋: MNIST
 # 학습 데이터 수: 50000
 # 테스트 데이터 수: 10000
@@ -12,11 +12,11 @@ class Model(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.layer0 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=(3, 3), stride=(1, 1), padding=(0, 0), dilation=(1, 1), groups=1, padding_mode='zeros', bias=True)
+        self.layer0 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=(5, 5), stride=(1, 1), padding=(0, 0), dilation=(1, 1), groups=1, padding_mode='zeros', bias=True)
         self.layer1 = nn.ReLU()
-        self.layer2 = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        self.layer2 = nn.AvgPool2d(kernel_size=2, stride=2, padding=0)
         self.layer3 = nn.Flatten(start_dim=1, end_dim=-1)
-        self.layer4 = nn.Linear(in_features=5408, out_features=10, bias=True)
+        self.layer4 = nn.Linear(in_features=4608, out_features=10, bias=True)
 
     def forward(self, x):
         # Input shape: [batch_size, channels, height, width]
